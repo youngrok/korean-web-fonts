@@ -1,0 +1,8 @@
+{
+  "name": "korean-web-fonts",
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.2",
+    "jquery": "",
+    "font-awesome": ""
+  }
+}
