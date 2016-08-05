@@ -8,25 +8,39 @@
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/earlyaccess/hanna.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/kopubbatang.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-        @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+    <style type="text/css" class="font-import">
 
         .poem {white-space: pre-line}
+        .alert {margin-top: 15px;}
     </style>
     <script type="text/javascript">
+        var fonts = [
+            ['sans-serif', 'https://fonts.googleapis.com/earlyaccess/hanna.css', 'Hanna', '한나체', 'google', 'OFL'],
+            ['sans-serif', 'https://fonts.googleapis.com/earlyaccess/jejugothic.css', 'Jeju Gothic', '제주 고딕', 'google', 'OFL'],
+            ['sans-serif', 'https://fonts.googleapis.com/earlyaccess/nanumgothic.css', 'Nanum Gothic', '나눔 고딕', 'google', 'OFL'],
+            ['sans-serif', 'https://fonts.googleapis.com/earlyaccess/notosanskr.css', 'Noto Sans KR', '노토 산스 KR', 'google', 'OFL'],
+            ['sans-serif', 'css/daum.css', 'Daum', '다음체', 'github', ''],
+
+
+            ['serif', 'https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css', 'Jeju Myeongjo', '제주 명조', 'google', 'OFL'],
+            ['serif', 'https://fonts.googleapis.com/earlyaccess/kopubbatang.css', 'KoPub Batang', '코펍 바탕', 'google', 'OFL'],
+            ['serif', 'https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css', 'Nanum Myeongjo', '나눔 명조', 'google', 'OFL'],
+
+            ['cursive', 'https://fonts.googleapis.com/earlyaccess/jejuhallasan.css', 'Jeju Hallasan', '제주 한라산', 'google', 'OFL'],
+            ['cursive', 'https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css', 'Nanum Brush Script', '나눔 붓글씨', 'google', 'OFL'],
+            ['cursive', 'https://fonts.googleapis.com/earlyaccess/nanumpenscript.css', 'Nanum Pen Script', '나눔 펜글씨', 'google', 'OFL'],
+
+            ['monospace', 'https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css', 'Nanum Gothic Coding', '나눔 고딕 코딩', 'google', 'OFL']
+        ]
         hljs.initHighlightingOnLoad();
 
         $(document).ready(function() {
+
+            fonts.forEach(function(font) {
+                $('.' + font[0]).append(`<a class="list-group-item" href="${font[1]}" style="font-family: '${font[2]}', ${font[0]}">${font[3]} <div class="pull-xs-right"><span class="label label-primary">${font[5]}</span> <i class="fa fa-${font[4]}"></i></div></a>`)
+                $('head').append(`<link rel="stylesheet" type="text/css" href="${font[1]}"/>`)
+            })
+
             $('a.list-group-item').click(function() {
                 $('article,code').css('font-family', this.style.fontFamily)
                 $('code.usage').html('/* CSS 임포트 */\n' +
@@ -40,6 +54,7 @@
                 return false
             })
         })
+
     </script>
 </head>
 <body>
@@ -49,49 +64,31 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <div class="list-group">
-                <a class="list-group-item" href="#" style="font-family: sans-serif">브라우저 기본 <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/hanna.css" style="font-family: 'Hanna', sans-serif">한나체 <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css" style="font-family: 'Jeju Gothic', sans-serif;">제주고딕 <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/jejuhallasan.css" style="font-family: 'Jeju Hallasan', cursive;">제주 한라산 <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" style="font-family: 'Nanum Gothic', sans-serif;">나눔 고딕 <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" style="font-family: 'Noto Sans KR', sans-serif;">노토 산스 KR <span class="label label-primary">sans-serif</span></a>
-                <a class="list-group-item" href="#" style="font-family: serif">브라우저 기본 <span class="label label-info">serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/jejumyeongjo.css" style="font-family: 'Jeju Myeongjo', serif;">제주 명조 <span class="label label-info">serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/kopubbatang.css" style="font-family: 'KoPub Batang', serif;">코펍 바탕 <span class="label label-info">serif</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css" style="font-family: 'Nanum Myeongjo', serif;">나눔 명조 <span class="label label-info">serif</span></a>
-                <a class="list-group-item" href="#" style="font-family: cursive">브라우저 기본 <span class="label label-success">cursive</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" style="font-family: 'Nanum Brush Script', cursive;">나눔 붓글씨 <span class="label label-success">cursive</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/nanumpenscript.css" style="font-family: 'Nanum Pen Script', cursive;">나눔 펜글씨 <span class="label label-success">cursive</span></a>
-                <a class="list-group-item" href="#" style="font-family: monospace">브라우저 기본 <span class="label label-warning">monospace</span></a>
-                <a class="list-group-item" href="https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css" style="font-family: 'Nanum Gothic Coding', monospace;">나눔 고딕 코딩 <span class="label label-warning">monospace</span></a>
+            <div class="list-group sans-serif">
+                <a class="list-group-item list-group-item-success" href="#" style="font-family: sans-serif">산세리프 sans-serif</a>
+            </div>
+            <br>
+            <div class="list-group serif">
+                <a class="list-group-item list-group-item-info" href="#" style="font-family: serif">세리프 serif</a>
+            </div>
+            <br>
+            <div class="list-group cursive">
+                <a class="list-group-item list-group-item-warning" href="#" style="font-family: cursive">필기체 cursive</a>
+            </div>
+            <br>
+            <div class="list-group monospace">
+                <a class="list-group-item list-group-item-danger" href="#" style="font-family: monospace">고정폭 monospace</a>
             </div>
         </div>
         <article class="col-sm-9">
             <div class="alert alert-info">
-                <h2>소스코드</h2>
+                <h2>적용하기</h2>
             </div>
             <pre><code class="usage">
 /* CSS 임포트 */
 @import url(https://fonts.googleapis.com/earlyaccess/hanna.css);
 /* 원하는 CSS selector에 다음 속성을 주세요. */
 font-family: 'Hanna', sans-serif;
-            </code></pre>
-            <pre><code>
-class 부가가치세:
-    PARTS = {
-        'vat_part_7_1': '매출예정신고누락분',
-        'vat_part_7_2': '매출예정신고누락분세액',
-    }
-
-    def __init__(self, tax):
-        self.tax = tax
-
-        self.빠른부가세매출합계 = self.tax.trader.invoice_set.filter(invoice_type='sales', issued__range=self.tax.range()) \
-                .aggregate(Sum('value_of_supply'))['value_of_supply__sum'] or 0
-        self.빠른부가세매출세액 = self.tax.trader.invoice_set.filter(invoice_type='sales', issued__range=self.tax.range()) \
-                .aggregate(Sum('vat'))['vat__sum'] or 0
-
             </code></pre>
 
             <div class="alert alert-info">
@@ -208,6 +205,32 @@ class 부가가치세:
             <button class="btn btn-secondary"><i class="fa fa-gavel"></i> 한글 버튼</button>
             <button class="btn btn-success-outline"><i class="fa fa-gavel"></i> 한글 버튼</button>
             <button class="btn btn-warning"><i class="fa fa-gavel"></i> 한글 버튼</button>
+            <div class="alert alert-info">
+                <h2>소스코드에서</h2>
+            </div>
+            <pre><code class="usage">
+/* CSS 임포트 */
+@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);
+/* 원하는 CSS selector에 다음 속성을 주세요. */
+font-family: 'Hanna', sans-serif;
+            </code></pre>
+            <pre><code>
+class 부가가치세:
+    PARTS = {
+        'vat_part_7_1': '매출예정신고누락분',
+        'vat_part_7_2': '매출예정신고누락분세액',
+    }
+
+    def __init__(self, tax):
+        self.tax = tax
+
+        self.빠른부가세매출합계 = self.tax.trader.invoice_set.filter(invoice_type='sales', issued__range=self.tax.range()) \
+                .aggregate(Sum('value_of_supply'))['value_of_supply__sum'] or 0
+        self.빠른부가세매출세액 = self.tax.trader.invoice_set.filter(invoice_type='sales', issued__range=self.tax.range()) \
+                .aggregate(Sum('vat'))['vat__sum'] or 0
+
+            </code></pre>
+
             <br>
             <br>
             <br>
